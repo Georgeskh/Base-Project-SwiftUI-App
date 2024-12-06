@@ -12,7 +12,11 @@ struct Base_Project_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            BroadcastViewComposer.make()
+            BroadcastViewComposer.make(broadcastLoader: broadcastLoaderMock)
         }
+    }
+    
+    private func broadcastLoaderMock() -> Result<[String], Error> {
+        .success(["Fetched Value from Domain layer"])
     }
 }

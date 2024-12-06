@@ -10,18 +10,18 @@ import SwiftUI
 struct BroadcastView: View {
     
     //MARK: - Properties
-    @StateObject private var state: BroadcastViewStore
+    @StateObject private var store: BroadcastViewStore
     private let onRefresh: () -> Void
     
-    init(onRefresh: @escaping (() -> Void), state: BroadcastViewStore) {
+    init(store: BroadcastViewStore, onRefresh: @escaping () -> Void) {
+        self._store = StateObject(wrappedValue: store)
         self.onRefresh = onRefresh
-        self._state = StateObject(wrappedValue: state)
     }
     
     //MARK: - Body
     var body: some View {
         List {
-            ForEach(state.broadcasts) { model in
+            ForEach(store.broadcasts) { model in
                 BroadcastItemView(model: model)
             }
         }
@@ -36,7 +36,7 @@ struct BroadcastView: View {
 
 #Preview {
     BroadcastView(
-        onRefresh: {},
-        state: BroadcastViewStore()
+        store: BroadcastViewStore(),
+        onRefresh: {}
     )
 }

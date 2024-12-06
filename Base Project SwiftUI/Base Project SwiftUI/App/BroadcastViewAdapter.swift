@@ -9,8 +9,18 @@ import Foundation
 
 struct BroadcastViewAdapter {
     var presenter: BroadcastPresenter?
+    let loader: () -> Result<[String], Error>
     
-    func fetchData() {
-        presenter?.showData([BroadcastViewModel(id: UUID(), text: "Fetched Value from Domain layer")])
+    init(loader: @escaping () -> Result<[String], Error>) {
+        self.loader = loader
+    }
+    
+    func loadResource() {
+        switch loader() {
+        case .success(let values):
+            presenter?.showData(values)
+        case .failure(_):
+            break
+        }
     }
 }

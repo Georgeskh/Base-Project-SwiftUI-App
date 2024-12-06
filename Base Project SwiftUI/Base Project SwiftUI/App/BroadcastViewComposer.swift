@@ -10,15 +10,17 @@ import SwiftUI
 
 enum BroadcastViewComposer {
     
-    static func make() -> some View {
-        var adapter = BroadcastViewAdapter()
+    static func make(
+        broadcastLoader: @escaping () -> Result<[String], Error>
+    ) -> some View {
+        var adapter = BroadcastViewAdapter(loader: broadcastLoader)
         let viewUpdater = BroadcastViewStore()
         let presenter = BroadcastPresenter(view: WeakRefVirtualProxy(viewUpdater))
         adapter.presenter = presenter
         
         return BroadcastView(
-            onRefresh: adapter.fetchData,
-            state: viewUpdater
+            store: viewUpdater,
+            onRefresh: adapter.loadResource
         )
     }
 }

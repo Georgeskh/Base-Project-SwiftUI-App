@@ -12,7 +12,7 @@ protocol BroadcastViewUpdater {
 }
 
 struct BroadcastPresenter {
-    var view: BroadcastViewUpdater
+    private let view: BroadcastViewUpdater
     
     init(view: BroadcastViewUpdater) {
         self.view = view

@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct BroadcastItemView: View {
-    let model: BroadcastViewModel
+    private let model: BroadcastViewModel
+    
+    init(model: BroadcastViewModel) {
+        self.model = model
+    }
+    
     var body: some View {
         Text(model.text)
     }

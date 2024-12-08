@@ -8,17 +8,18 @@
 import Foundation
 
 struct BroadcastViewAdapter {
-    var presenter: BroadcastPresenter?
-    let loader: () -> Result<[String], Error>
+    private let presenter: BroadcastPresenter
+    private let loader: () -> Result<[String], Error>
     
-    init(loader: @escaping () -> Result<[String], Error>) {
+    init(presenter: BroadcastPresenter, loader: @escaping () -> Result<[String], Error>) {
+        self.presenter = presenter
         self.loader = loader
     }
     
     func loadResource() {
         switch loader() {
         case .success(let values):
-            presenter?.showData(values)
+            presenter.showData(values)
         case .failure(_):
             break
         }

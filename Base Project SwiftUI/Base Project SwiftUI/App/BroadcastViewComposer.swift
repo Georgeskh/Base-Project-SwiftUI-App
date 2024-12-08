@@ -13,10 +13,12 @@ enum BroadcastViewComposer {
     static func make(
         broadcastLoader: @escaping () -> Result<[String], Error>
     ) -> some View {
-        var adapter = BroadcastViewAdapter(loader: broadcastLoader)
         let viewUpdater = BroadcastViewStore()
         let presenter = BroadcastPresenter(view: WeakRefVirtualProxy(viewUpdater))
-        adapter.presenter = presenter
+        var adapter = BroadcastViewAdapter(
+            presenter: presenter,
+            loader: broadcastLoader
+        )
         
         return BroadcastView(
             store: viewUpdater,

@@ -1,4 +1,6 @@
 # Base-Project-SwiftUI-App
 Checkout the articles:
 
-[MVP + SwiftUI]([https://pages.github.com/](https://github.com/Georgeskh/Base-Project-SwiftUI-App/releases/tag/MVP%2BSwiftUI))
+| Article  | Source Code |
+| ------------- | ------------- |
+| [MVP + SwiftUI](https://medium.com/learn-by-writing/mvp-swiftui-3357b59d746b)  | [link](https://github.com/Georgeskh/Base-Project-SwiftUI-App/releases/tag/MVP%2BSwiftUI)  |
